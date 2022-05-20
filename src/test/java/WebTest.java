@@ -16,6 +16,7 @@ public class WebTest {
         String url = "http://www.99-bottles-of-beer.net/";
         String expectedResult = "Welcome to 99 Bottles of Beer";
 
+
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
 
@@ -38,4 +39,27 @@ public class WebTest {
         driver.quit();
 
     }
+    @Test
+    public void testIsRightUpCornerTitles99BottlesOfBeer(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "99 Bottles of Beer";
+
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        WebElement h1 = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='header']/h1"));
+        String actualResult = h1.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+
+        driver.quit();
+
+    }
+
+
 }
