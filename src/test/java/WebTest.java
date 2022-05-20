@@ -73,13 +73,45 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement a = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']"));
+        WebElement a = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/"
+                        + "a[@href='/submitnewlanguage.html']"));
 
         String actualResult  = a.getText();
 
         Assert.assertEquals(actualResult,expectedResult);
 
         driver.quit();
+
+    }
+
+    @Test
+    public void testLastTitleMenuSubtitleSubmitNewLanguage(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "Submit New Language";
+
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        WebElement menuSubmitNewLanguage = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/"
+                      + "a[@href='/submitnewlanguage.html']"));
+        menuSubmitNewLanguage.click();
+        WebElement a = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/"
+                        + "a[@href='./submitnewlanguage.html']"));
+
+        String actualResult = a.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+
+        driver.quit();
+
+
 
     }
 
