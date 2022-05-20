@@ -114,6 +114,34 @@ public class WebTest {
 
 
     }
+    @Test
+    public void testFirstTitleSubmenuIsNameZeroNine(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/abc.html ";
+        String expectedResult = "0-9";
+
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement a = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/"
+                        + "a[@href='0.html']"));
+        String actualResult = a.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+
+        driver.quit();
+
+
+    }
+
+
+
+
 
 
 }
