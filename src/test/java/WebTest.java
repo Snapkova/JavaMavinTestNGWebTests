@@ -138,9 +138,29 @@ public class WebTest {
 
 
     }
+    @Test
+    public void testThisIsNamesCreatorsOfSite() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/chromedriver";
+        String url = " http://www.99-bottles-of-beer.net/team.html";
+        String expectedResult = "Oliver Schade\n" +
+                "Gregor Scheithauer\n" +
+                "Stefan Scheler";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement h3 = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/h3"));
+       String actualResult = h3.getText();
+       Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
 
 
-
+    }
 
 
 
